@@ -236,7 +236,7 @@ def generate_filename(gen_type: str, key: str, mode: str, bars: int,
     mode_clean = mode.split()[0].lower()
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     
-    filename = f"{gen_type}_{key}_{mode_clean}_{bars}bars_{timestamp}.mid"
+    filename = f"{timestamp}_{gen_type}_{key}_{mode_clean}_{bars}bars.mid"
     return os.path.join(output_dir, filename)
 
 
