@@ -76,6 +76,7 @@ GENERATION_TYPES = {
     "lead": "Lead Melody",
     "pad": "Pad/Chords",
     "bass": "Bass Line",
+    "hook": "Hook (Catchy Melody)",
     "harmony": "Full Harmony (Lead + Pad + Bass)",
 }
 
@@ -139,6 +140,7 @@ OCTAVE_RANGES = {
     "lead": (4, 6),    # C4 to C6
     "pad": (3, 5),     # C3 to C5
     "bass": (1, 3),    # C1 to C3
+    "hook": (4, 5),    # C4 to C5 (singable range)
 }
 
 # Velocity ranges
@@ -146,6 +148,7 @@ VELOCITY_RANGES = {
     "lead": (80, 110),
     "pad": (60, 90),
     "bass": (90, 120),
+    "hook": (90, 115),  # Slightly louder for emphasis
 }
 
 # Moods with their generation parameters

@@ -504,6 +504,13 @@ def handle_create_mode(config: dict) -> str:
         notes = melody_gen.generate_pad(bars, note_length, time_sig, prog)
         track_data = notes
         
+    elif gen_type == 'hook':
+        from core.hook_generator import HookGenerator
+        hook_gen = HookGenerator(key, mode, tempo)
+        notes = hook_gen.generate(bars, note_length, time_sig, 
+                                  mood=mood, style=style)
+        track_data = notes
+        
     else:  # harmony
         harmony = harmony_gen.generate_full_harmony(
             bars, note_length, time_sig, progression

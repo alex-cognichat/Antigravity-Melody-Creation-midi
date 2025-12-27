@@ -12,10 +12,10 @@ pip install mido inquirer
 
 ```bash
 # Interactive mode (recommended)
-python main.py
+python3 main.py
 
 # Quick generation
-python main.py --quick -k C -s "Ionian (Major)" -t lead -b 8
+python3 main.py --quick -k C -s "Ionian (Major)" -t lead -b 8
 ```
 
 ## Melody Generation Algorithms
@@ -40,23 +40,23 @@ Generate music from scratch with full control over parameters.
 
 ```bash
 # Basic lead melody
-python main.py --quick -k G -s Dorian -t lead -b 8
+python3 main.py --quick -k G -s Dorian -t lead -b 8
 
 # Full harmony with style
-python main.py --quick -t harmony --style synthwave --mood energetic
+python3 main.py --quick -t harmony --style synthwave --mood energetic
 
 # Dark pad in minor key
-python main.py --quick -k A -s "Aeolian (Minor)" -t pad --mood dark -b 16
+python3 main.py --quick -k A -s "Aeolian (Minor)" -t pad --mood dark -b 16
 
 # Pop progression with happy mood
-python main.py --quick -t harmony -p I-V-vi-IV --style pop --mood happy
+python3 main.py --quick -t harmony -p I-V-vi-IV --style pop --mood happy
 ```
 
 ### 2. Analyze
 Import a MIDI file and detect key, mode, tempo, and note statistics.
 
 ```bash
-python main.py --mode analyze -i my_song.mid
+python3 main.py --mode analyze -i my_song.mid
 ```
 
 Output includes:
@@ -70,10 +70,10 @@ Add harmony parts (lead, pad, bass) to an imported chord progression.
 
 ```bash
 # Basic harmonization
-python main.py --mode harmonize -i chords.mid
+python3 main.py --mode harmonize -i chords.mid
 
 # With mood/style
-python main.py --mode harmonize -i chords.mid --mood dreamy --style lofi
+python3 main.py --mode harmonize -i chords.mid --mood dreamy --style lofi
 ```
 
 ### 4. Continue
@@ -81,10 +81,10 @@ Extend an existing MIDI file with new bars that fit naturally.
 
 ```bash
 # Add 4 bars
-python main.py --mode continue -i melody.mid -b 4
+python3 main.py --mode continue -i melody.mid -b 4
 
 # Continue with specific mood
-python main.py --mode continue -i melody.mid -b 8 --mood energetic --style edm
+python3 main.py --mode continue -i melody.mid -b 8 --mood energetic --style edm
 ```
 
 ## Mood Modifiers
@@ -116,6 +116,49 @@ python main.py --mode continue -i melody.mid -b 8 --mood energetic --style edm
 | `ambient` | Slow pads, sparse |
 | `funk` | Syncopation, sixteenths |
 | `metal` | Heavy bass, aggressive |
+
+## Hook Generation
+
+The **hook** generation type creates extremely catchy, memorable melodies designed to be "earworms". Hooks are perfect for song choruses, jingles, or any melody that needs to stick in the listener's head.
+
+### Hook Characteristics
+
+- **Singable range**: Limited to ~1 octave (C4-C5) for easy memorability
+- **Repetition**: Uses repetitive motifs that create the "earworm" effect
+- **Strong beats**: Emphasizes beats 1 and 3 for rhythmic impact
+- **Chord tones**: Focuses on 1, 3, 5 of the scale for harmonic strength
+- **Call-and-response**: Creates question/answer patterns
+
+### Hook Usage
+
+```bash
+# Quick 1-bar pop hook
+python3 main.py --quick -t hook --style pop --mood happy -b 1
+
+# 2-bar catchy EDM hook
+python3 main.py --quick -t hook --style edm --mood energetic -b 2 -k G
+
+# Dark synthwave hook
+python3 main.py --quick -t hook --style synthwave --mood dark -b 2 -k A -s "Aeolian (Minor)"
+
+# Epic rock hook
+python3 main.py --quick -t hook --style rock --mood epic -b 4
+```
+
+### Hook Patterns
+
+The hook generator uses proven melodic patterns:
+
+| Pattern | Description |
+|---------|-------------|
+| `repeat_two` | Same note twice (creates emphasis) |
+| `call_response` | Up then down (question/answer) |
+| `power_arpeggio` | 1-3-5-3 chord arpeggio |
+| `millennial_whoop` | The famous "oh-oh-oh" pattern |
+| `octave_jump` | Root to 5th dramatic pattern |
+| `pentatonic_hook` | Pentatonic-friendly melodic line |
+| `zigzag` | Creates interesting melodic contour |
+| `resolution` | Step down to tonic for closure |
 
 ## Command Line Arguments
 
@@ -157,7 +200,7 @@ python main.py --mode continue -i melody.mid -b 8 --mood energetic --style edm
 
 **`--note-length`**: `Whole`, `Half`, `Dotted Half`, `Quarter`, `Dotted Quarter`, `Eighth`, `Sixteenth`, `Triplet Eighth`, `Triplet Sixteenth`
 
-**`--type`**: `lead`, `pad`, `bass`, `harmony`
+**`--type`**: `lead`, `pad`, `bass`, `hook`, `harmony`
 
 **`--tempo`**: `40` to `200` BPM
 
@@ -171,20 +214,29 @@ python main.py --mode continue -i melody.mid -b 8 --mood energetic --style edm
 
 ```bash
 # Synthwave lead with energetic mood
-python main.py --quick -t lead --style synthwave --mood energetic -b 16
+python3 main.py --quick -t lead --style synthwave --mood energetic -b 16
 
 # Jazz harmony
-python main.py --quick -t harmony --style jazz -p ii-V-I --tempo 95
+python3 main.py --quick -t harmony --style jazz -p ii-V-I --tempo 95
 
 # Analyze then continue
-python main.py --mode analyze -i existing.mid
-python main.py --mode continue -i existing.mid -b 8 --mood calm
+python3 main.py --mode analyze -i existing.mid
+python3 main.py --mode continue -i existing.mid -b 8 --mood calm
 
 # Dreamy ambient pad
-python main.py --quick -t pad --style ambient --mood dreamy -b 32 --tempo 70
+python3 main.py --quick -t pad --style ambient --mood dreamy -b 32 --tempo 70
 
 # Metal bass line
-python main.py --quick -t bass --style metal --mood aggressive -k E -s "Aeolian (Minor)"
+python3 main.py --quick -t bass --style metal --mood aggressive -k E -s "Aeolian (Minor)"
+
+# Catchy pop hook (1 bar)
+python3 main.py --quick -t hook --style pop --mood happy -b 1
+
+# Epic EDM hook (2 bars)
+python3 main.py --quick -t hook --style edm --mood epic -b 2 -k G
+
+# Dark minor hook
+python3 main.py --quick -t hook --style synthwave --mood dark -b 2 -k A -s "Aeolian (Minor)"
 ```
 
 ## Output
